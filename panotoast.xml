@@ -1,0 +1,95 @@
+
+<krpano>
+	<!--
+		弹窗样式style
+	-->
+	<!--colors-->
+	<style name="basic"
+		bgalpha="1"
+		bgcolor="0x000000"
+		/>
+
+	<style name="warn"
+		bgalpha="1"
+		bgcolor="0xff5722"
+		/>
+
+	<style name="success"
+		bgalpha="1"
+		bgcolor="0x4caf50"
+		/>
+	<!--location-->
+	<style name="popup"
+		align='top'
+		onloaded="tween(oy,30,0.3,easeOutQuad);"
+		/>
+
+	<style name="popcenter"
+		align="center"
+		onloaded="set(alpha,0);tween(alpha,1,0.3)"
+		/>
+	
+	<style name="popdown"
+		align="bottom"
+		onloaded="tween(oy,-30,0.3,easeOutQuad);"
+		/>
+
+	<style name="popright"
+		align="righttop"
+		y="20"
+		onloaded="tween(ox,-50,0.5,easeOutQuad)"
+		/>
+	
+	<layer name="toast_text" style="basic" html="简单提示" visible="false" />
+
+
+	<!--
+		%1 ==> _html:提示文字(必须)
+		%2 ==> _style:样式(必须)
+		%3 ==> _delaytime:延迟事件，默认2s(可选)
+	-->
+	<action name="create_toast" >
+		set(_style,%2);
+
+		ifnot(%3,
+			set(_delaytime,2),
+			set(_delaytime,%3)
+		);
+
+		addlayer(toastlayer);
+		tween(layer[toastlayer].alpha,1,0.3);
+		layer[toastlayer].loadstyle(%2);
+		set(layer[toastlayer],
+			keep='true',
+			type='text',
+			width='55%',
+			maxwidth='300',
+			padding='10 40',
+			bgroundedge='2',
+			css='font-family:Arial; font-size:16px; color:#fff;text-align:center',
+			html=%1,
+			onclick="destory_toast(_style)"
+
+		);
+		
+		delayedcall(get(_delaytime),destory_toast(_style));
+	</action>
+
+	<action name="destory_toast" >
+		txtsplit(get(%1),'|',result);
+		copy(location,result[1].value);
+		if(location =='popup',
+			tween(layer[toastlayer].oy,-50,0.5,easeOutQuad);
+		);
+		if(location == 'popdown',
+			tween(layer[toastlayer].oy,50,0.5,easeOutQuad);
+		);
+		if(location == 'popright',
+			tween(layer[toastlayer].ox,50,0.5,easeOutQuad);
+		);
+
+		tween(layer[toastlayer].alpha,0,0.4);
+		delayedcall(0.5,removelayer(toastlayer));
+
+	</action>
+</krpano>

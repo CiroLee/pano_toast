@@ -1,0 +1,12 @@
+﻿<krpano>
+	<include url="panotoast.xml" />
+	<!-- grid preview pano -->
+	<preview type="grid(cube,64,64,512,0xCCCCCC,0xF6F6F6,0x999999);" />
+
+	<!-- view/fov settings -->
+	<view hlookat="0" vlookat="0" fovtype="VFOV" fov="90" fovmin="30" fovmax="150" />
+
+	<!--buttons-->
+	<layer name="button" keep="true" url="others.png" scale="0.25" align="bottom" y="50" onclick="create_toast(简单的提示,warn|popright,5)" />
+
+</krpano>
