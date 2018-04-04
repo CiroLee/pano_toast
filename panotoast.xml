@@ -3,22 +3,9 @@
 	<!--
 		弹窗样式style
 	-->
-	<!--colors-->
-	<style name="basic"
-		bgalpha="1"
-		bgcolor="0x000000"
-		/>
+	
 
-	<style name="warn"
-		bgalpha="1"
-		bgcolor="0xff5722"
-		/>
-
-	<style name="success"
-		bgalpha="1"
-		bgcolor="0x4caf50"
-		/>
-	<!--location-->
+	<!--toast提示框位置-->
 	<style name="popup"
 		align='top'
 		onloaded="tween(oy,30,0.3,easeOutQuad);"
@@ -34,27 +21,140 @@
 		onloaded="tween(oy,-30,0.3,easeOutQuad);"
 		/>
 
-	<style name="popright"
+	<style name="poprighttop"
 		align="righttop"
 		y="20"
-		onloaded="tween(ox,-50,0.5,easeOutQuad)"
+		ox="300"
+		onloaded="tween(ox,-30,0.5,easeOutQuad)"
 		/>
+
+	<style name="poprightbottom"
+		align="rightbottom"
+		y="20"
+		ox="300"
+		onloaded="tween(ox,-30,0.5,easeOutQuad)"
+		/>
+
+	<style name="poplefttop"
+		align="lefttop"
+		y="20"
+		ox="-300"
+		onloaded="tween(ox,30,0.5,easeOutQuad)"
+		/>
+
+	<style name="popleftbottom"
+		align="leftbottom"
+		y="30"
+		ox="-300"
+		onloaded="tween(ox,30,0.5,easeOutQuad)"
+		/>
+
+	<!--纯色-->
+	<style name="basic"
+		bgalpha="1"
+		bgcolor="0x000000"
+		/>
+
+	<style name="warn"
+		bgalpha="1"
+		bgcolor="0xff5722"
+		ondown="set(bgcolor,0xD7846A)"
+		onup="set(bgcolor,0xff5722)"
+		/>
+
+	<style name="success"
+		bgalpha="1"
+		bgcolor="0x4caf50"
+		ondown="set(bgcolor,0x609762)"
+		onup="set(bgcolor,0x4caf50)"
+		/>
+
+	<style name="error" 
+		bgalpha="1"
+		bgcolor="0xEA2727"
+		ondown="set(bgcolor,0xB62828)"
+		onup="set(bgcolor,0xEA2727)"
+		/>
+	<!--特殊颜色,半透明边逛-->
+	<style name="transgray"
+		bgalpha="0.5"
+		bgcolor="0x303030"
+		bgborder="1 0x5E5E5E 0.5"
+		ondown="set(bgalpha,0.6)"
+		onup="set(bgalpha,0.5)"
+		/>
+		<!--针对圆角样式toast设计，button圆角请使用btn-circle-->
+	<style name="transcircle"
+		bgalpha="0.5"
+		bgcolor="0x303030"
+		bgborder="1 0x5E5E5E 0.5"
+		bgroundedge="40"
+		/>
+
+	<!--button style-->
+
+	<style name="btn_default" 
+		keep="true"
+		type="text"
+		padding="16 50"
+		bgroundedge="4"
+		css="font-family:Arial; font-size:16px; color:#fff;text-align:center"
+		/>
+	<style name="btn_circle"
+		keep="true"
+		type="text"
+		padding="16 50"
+		bgroundedge="50"
+		css="font-family:Arial; font-size:16px; color:#fff;text-align:center"
+		/>
+
+	<style name="btn_block"
+		keep="true"
+		type="text"
+		width="100%"
+		padding="16 50"
+		bgroundedge="4"
+		css="font-family:Arial; font-size:16px; color:#fff;text-align:center"
+
+		/>
+
+	<!--button size-->
+	<style name="default" 
+		padding="16 50"
+		css="font-family:Arial; font-size:16px; color:#fff;text-align:center"
+		/>
+	<style name="large"
+		padding="20 60"
+		css="font-family:Arial; font-size:20px; color:#fff;text-align:center"
+		/>
+	<style name="small"
+		padding="10 30"
+		css="font-family:Arial; font-size:14px; color:#fff;text-align:center"
+		/>
+
 	
-	<layer name="toast_text" style="basic" html="简单提示" visible="false" />
 
 
 	<!--
+		create_toast()  创建toast
+
 		%1 ==> _html:提示文字(必须)
 		%2 ==> _style:样式(必须)
 		%3 ==> _delaytime:延迟事件，默认2s(可选)
 	-->
+
 	<action name="create_toast" >
 		set(_style,%2);
+		txtsplit(%2,'|',__style);
+		copy(special,__style[0].value);
+
 
 		ifnot(%3,
 			set(_delaytime,2),
 			set(_delaytime,%3)
 		);
+
+		removelayer(toastlayer);
 
 		addlayer(toastlayer);
 		tween(layer[toastlayer].alpha,1,0.3);
@@ -62,34 +162,41 @@
 		set(layer[toastlayer],
 			keep='true',
 			type='text',
-			width='55%',
-			maxwidth='300',
 			padding='10 40',
 			bgroundedge='2',
-			css='font-family:Arial; font-size:16px; color:#fff;text-align:center',
+			css='font-family:Arial; font-size:16px; color:#fff;text-align:left',
 			html=%1,
 			onclick="destory_toast(_style)"
 
+		);
+		<!--特殊样式设置，覆盖默认设置-->
+		if(special == 'transcircle',
+			set(layer[toastlayer].bgroundedge,40);
 		);
 		
 		delayedcall(get(_delaytime),destory_toast(_style));
 	</action>
 
+	<!--销毁toast-->
 	<action name="destory_toast" >
-		txtsplit(get(%1),'|',result);
+		txtsplit(%1,'|',result);
 		copy(location,result[1].value);
 		if(location =='popup',
-			tween(layer[toastlayer].oy,-50,0.5,easeOutQuad);
+			tween(layer[toastlayer].oy,-30,0.3,easeOutQuad);
 		);
 		if(location == 'popdown',
-			tween(layer[toastlayer].oy,50,0.5,easeOutQuad);
+			tween(layer[toastlayer].oy,30,0.3,easeOutQuad);
 		);
-		if(location == 'popright',
-			tween(layer[toastlayer].ox,50,0.5,easeOutQuad);
+		if(location == 'poprighttop' OR location == 'poprightbottom',
+			tween(layer[toastlayer].ox,30,0.3,easeOutQuad);
+		);
+		if(location == 'poplefttop' OR location == 'popleftbottom',
+			tween(layer[toastlayer].ox,-30,0.3,easeOutQuad);
 		);
 
-		tween(layer[toastlayer].alpha,0,0.4);
-		delayedcall(0.5,removelayer(toastlayer));
+		tween(layer[toastlayer].alpha,0,0.3);
+		delayedcall(0.3,removelayer(toastlayer));
 
 	</action>
+
 </krpano>

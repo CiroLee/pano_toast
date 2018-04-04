@@ -6,7 +6,26 @@
 	<!-- view/fov settings -->
 	<view hlookat="0" vlookat="0" fovtype="VFOV" fov="90" fovmin="30" fovmax="150" />
 
-	<!--buttons-->
-	<layer name="button" keep="true" url="others.png" scale="0.25" align="bottom" y="50" onclick="create_toast(简单的提示,warn|popright,5)" />
+	<!--tosttype-->
+	<layer name='button_text1' type="text" bgalpha="0" html="toast使用" align="center" width='956' y="34" css="font-family:Arial; font-size:16px; color:#000;text-align:left" />
+	<layer name="btn_container_1" keep="true" type="container" align="center" width="956" height="60" y="80" bgcolor="0x667B9E" bgalpha="0.5" >
+		<layer name="btn_popup" style="btn_default|basic|small" align="left" html="popup" x="6" onclick="create_toast('简单提示',basic|popup)" />
+		<layer name="btn_down" style="btn_default|basic|small" align="left" html="popdown" x="114" onclick="create_toast('简单提示',basic|popdown)" />
+		<layer name="btn_center" style="btn_default|basic|small" align="left" html="popcenter" x="240" onclick="create_toast('简单提示',transcircle|popcenter)" />
+		<layer name="btn_lefttop" style="btn_default|basic|small" align="left" html="poplefttop" x="370" onclick="create_toast('简单提示',success|poplefttop)" />
+		<layer name="btn_leftbottom" style="btn_default|basic|small" align="left" html="popleftbottom" x="500" onclick="create_toast('简单提示',warn|popleftbottom)" />
+		<layer name="btn_righttop" style="btn_default|basic|small" align="left" html="poprighttop" x="654" onclick="create_toast('简单提示',error|poprighttop)" />
+		<layer name="btn_rightbottom" style="btn_default|basic|small" align="left" html="poprightbottom" x="794" onclick="create_toast('简单提示',transgray|poprightbottom)" />
+	</layer>
+	<layer name='button_text2' type="text" bgalpha="0" html="按钮使用" align="center" width='956' y="140" css="font-family:Arial; font-size:16px; color:#000;text-align:left" />
+	<layer name="btn_container_2" keep="true" type="container" align="center" width="956" height="80" y="200" bgcolor="0x667B9E" bgalpha="0.5" >
+		<layer name="btn_default" style="btn_default|transgray" html="default" align="left" x="10" />
+		<layer name="btn_small" style="btn_default|warn|small" html="small" align="left" x="180" />
+		<layer name="btn_large" style="btn_default|success|large" html="large" align="left" x="286" />
+		<layer name="btn_circle" style="btn_circle|error" html="circle" align="left" x="460" />
+		
+	</layer>
+
+	<layer name="btn_block2" style="btn_block|success" align="bottom" y="100" html="块级按钮，宽度100%" />
 
 </krpano>
