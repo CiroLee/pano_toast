@@ -26,6 +26,6 @@
 		
 	</layer>
 
-	<layer name="btn_block2" style="btn_block|success" align="bottom" y="100" html="块级按钮，宽度100%" />
+	<layer name="btn_block2" style="btn_block|success" align="bottom" y="40" html="块级按钮，宽度100%" />
 
 </krpano>

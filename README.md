@@ -1,2 +1,2 @@
 # pano_toast
-toast
+基于krpano的UI插件

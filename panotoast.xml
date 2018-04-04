@@ -154,8 +154,6 @@
 			set(_delaytime,%3)
 		);
 
-		removelayer(toastlayer);
-
 		addlayer(toastlayer);
 		tween(layer[toastlayer].alpha,1,0.3);
 		layer[toastlayer].loadstyle(%2);
