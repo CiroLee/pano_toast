@@ -6,131 +6,43 @@
 	
 
 	<!--toast提示框位置-->
-	<style name="popup"
-		align='top'
-		onloaded="tween(oy,30,0.3,easeOutQuad);"
-		/>
+	<style name="popup" align='top' onloaded="tween(oy,30,0.3,easeOutQuad);" />
 
-	<style name="popcenter"
-		align="center"
-		onloaded="set(alpha,0);tween(alpha,1,0.3)"
-		/>
+	<style name="popcenter" align="center" onloaded="set(alpha,0);tween(alpha,1,0.3)" />
 	
-	<style name="popdown"
-		align="bottom"
-		onloaded="tween(oy,-30,0.3,easeOutQuad);"
-		/>
+	<style name="popdown" align="bottom" onloaded="tween(oy,-30,0.3,easeOutQuad);" />
 
-	<style name="poprighttop"
-		align="righttop"
-		y="20"
-		ox="300"
-		onloaded="tween(ox,-30,0.5,easeOutQuad)"
-		/>
+	<style name="poprighttop" align="righttop" y="20" ox="300" onloaded="tween(ox,-30,0.5,easeOutQuad)" />
 
-	<style name="poprightbottom"
-		align="rightbottom"
-		y="20"
-		ox="300"
-		onloaded="tween(ox,-30,0.5,easeOutQuad)"
-		/>
+	<style name="poprightbottom" align="rightbottom" y="20" ox="300" onloaded="tween(ox,-30,0.5,easeOutQuad)" />
 
-	<style name="poplefttop"
-		align="lefttop"
-		y="20"
-		ox="-300"
-		onloaded="tween(ox,30,0.5,easeOutQuad)"
-		/>
+	<style name="poplefttop" align="lefttop" y="20" ox="-300" onloaded="tween(ox,30,0.5,easeOutQuad)" />
 
-	<style name="popleftbottom"
-		align="leftbottom"
-		y="30"
-		ox="-300"
-		onloaded="tween(ox,30,0.5,easeOutQuad)"
-		/>
+	<style name="popleftbottom" align="leftbottom" y="30" ox="-300" onloaded="tween(ox,30,0.5,easeOutQuad)" />
 
 	<!--纯色-->
-	<style name="basic"
-		bgalpha="1"
-		bgcolor="0x000000"
-		/>
+	<style name="basic" bgalpha="1" bgcolor="0x000000" />
 
-	<style name="warn"
-		bgalpha="1"
-		bgcolor="0xff5722"
-		ondown="set(bgcolor,0xD7846A)"
-		onup="set(bgcolor,0xff5722)"
-		/>
+	<style name="warn" bgalpha="1" bgcolor="0xff5722" />
 
-	<style name="success"
-		bgalpha="1"
-		bgcolor="0x4caf50"
-		ondown="set(bgcolor,0x609762)"
-		onup="set(bgcolor,0x4caf50)"
-		/>
+	<style name="success" bgalpha="1" bgcolor="0x4caf50" />
 
-	<style name="error" 
-		bgalpha="1"
-		bgcolor="0xEA2727"
-		ondown="set(bgcolor,0xB62828)"
-		onup="set(bgcolor,0xEA2727)"
-		/>
+	<style name="error" bgalpha="1" bgcolor="0xEA2727" />
 	<!--特殊颜色,半透明边逛-->
-	<style name="transgray"
-		bgalpha="0.5"
-		bgcolor="0x303030"
-		bgborder="1 0x5E5E5E 0.5"
-		ondown="set(bgalpha,0.6)"
-		onup="set(bgalpha,0.5)"
-		/>
-		<!--针对圆角样式toast设计，button圆角请使用btn-circle-->
-	<style name="transcircle"
-		bgalpha="0.5"
-		bgcolor="0x303030"
-		bgborder="1 0x5E5E5E 0.5"
-		bgroundedge="40"
-		/>
+	<style name="transgray" bgalpha="0.5" bgcolor="0x303030" bgborder="1 0x5E5E5E 0.5" ondown="set(bgalpha,0.4)" onup="set(bgalpha,0.5)" />
+	<!--针对圆角样式toast设计，button圆角请使用btn-circle-->
+	<style name="transcircle" bgalpha="0.5" bgcolor="0x303030" bgborder="1 0x5E5E5E 0.5" bgroundedge="40" />
 
 	<!--button style-->
+	<style name="btn_default" keep="true" type="text" padding="16 50" bgroundedge="4" ondown="set(bgalpha,0.8)" onup="set(bgalpha,1)" css="font-family:Arial; font-size:16px; color:#fff;text-align:center" />
+	<style name="btn_circle" keep="true" style="btn_default" type="text" padding="16 50" bgroundedge="50" css="font-family:Arial; font-size:16px; color:#fff;text-align:center" />
 
-	<style name="btn_default" 
-		keep="true"
-		type="text"
-		padding="16 50"
-		bgroundedge="4"
-		css="font-family:Arial; font-size:16px; color:#fff;text-align:center"
-		/>
-	<style name="btn_circle"
-		keep="true"
-		type="text"
-		padding="16 50"
-		bgroundedge="50"
-		css="font-family:Arial; font-size:16px; color:#fff;text-align:center"
-		/>
-
-	<style name="btn_block"
-		keep="true"
-		type="text"
-		width="100%"
-		padding="16 50"
-		bgroundedge="4"
-		css="font-family:Arial; font-size:16px; color:#fff;text-align:center"
-
-		/>
+	<style name="btn_block" keep="true" style="btn_default" type="text" width="100%" padding="16 50" bgroundedge="4" css="font-family:Arial; font-size:16px; color:#fff;text-align:center" />
 
 	<!--button size-->
-	<style name="default" 
-		padding="16 50"
-		css="font-family:Arial; font-size:16px; color:#fff;text-align:center"
-		/>
-	<style name="large"
-		padding="20 60"
-		css="font-family:Arial; font-size:20px; color:#fff;text-align:center"
-		/>
-	<style name="small"
-		padding="10 30"
-		css="font-family:Arial; font-size:14px; color:#fff;text-align:center"
-		/>
+	<style name="default" padding="16 50" css="font-family:Arial; font-size:16px; color:#fff;text-align:center" />
+	<style name="large" padding="20 60" css="font-family:Arial; font-size:20px; color:#fff;text-align:center" />
+	<style name="small" padding="10 30" css="font-family:Arial; font-size:14px; color:#fff;text-align:center" />
 
 	
 
